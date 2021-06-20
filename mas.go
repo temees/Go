@@ -19,18 +19,16 @@ func main() {
 		}
 	}
 
-	ShellSort(sliceNum)
+	InsertionSort(sliceNum)
 	fmt.Println(sliceNum)
 }
-func ShellSort(ar []int) {
-	for gap := len(ar) / 2; gap > 0; gap /= 2 {
-		for i := gap; i < len(ar); i++ {
-			x := ar[i]
-			j := i
-			for ; j >= gap && ar[j-gap] > x; j -= gap {
-				ar[j] = ar[j-gap]
-			}
-			ar[j] = x
+func InsertionSort(ar []int) {
+	for i := 1; i < len(ar); i++ {
+		x := ar[i]
+		j := i
+		for ; j >= 1 && ar[j-1] > x; j-- {
+			ar[j] = ar[j-1]
 		}
+		ar[j] = x
 	}
 }
