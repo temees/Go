@@ -1,6 +1,6 @@
 {
   "Port" : "8070",
-  "DB_url" : "postgres://db-user:db-password@petstore-db:5432/petstore?sslmode=disable",
+
   "Some_app_id" : "testid",
   "Jaeger_url" : "http://jaeger:16686",
   "Sentry_url" : "http://sentry:9000",

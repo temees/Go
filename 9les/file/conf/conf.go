@@ -3,6 +3,7 @@ package conf
 import (
 	"encoding/json"
 	"flag"
+	"fmt"
 	"log"
 	"os"
 )
@@ -17,6 +18,12 @@ type Config struct {
 	Some_app_key string `json:"some_app_key"`
 }
 
+func (a Config) IsValid() error {
+	if a.DB_url == "" {
+		fmt.Println("DB URL field is empty")
+	}
+	return fmt.Errorf("error3")
+}
 func NewConfig() *Config {
 	f, err := os.Open("conf/conf.json")
 	if err != nil {
@@ -43,8 +50,7 @@ func NewConfig() *Config {
 	var kafka_broker = flag.String("kafka_broker", app.Kafka_broker, "Kafka broker")
 	var some_app_key = flag.String("some_app_key", app.Some_app_key, "Key")
 	flag.Parse()
-
-	return &Config{
+	a := &Config{
 		Port:         *port,
 		DB_url:       *db_url,
 		Some_app_id:  *some_app_id,
@@ -53,5 +59,11 @@ func NewConfig() *Config {
 		Kafka_broker: *kafka_broker,
 		Some_app_key: *some_app_key,
 	}
+
+	er := a.IsValid()
+	if er != nil {
+		log.Println("error4")
+	}
+	return a
 
 }
