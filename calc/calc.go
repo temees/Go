@@ -26,7 +26,11 @@ func main() {
 
 		return
 	}
+	r = calc(a, b, op)
+	fmt.Println(a, op, b, "=", r)
+}
 
+func calc(a float64, b float64, op string) (r float64) {
 	switch op {
 	case "+":
 		r = a + b
@@ -43,5 +47,5 @@ func main() {
 		fmt.Println("Operation must be +, -, /, *, ^")
 		return
 	}
-	fmt.Println(a, op, b, "=", r)
+	return r
 }
